@@ -112,7 +112,7 @@ public class PullPushLayout extends ScrollView {
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         
-        switch (ev.getAction()) {
+        /*switch (ev.getAction()) {
             case MotionEvent.ACTION_MOVE:
                 if (getScrollY() != 0) {
                     deltaY = 0;
@@ -133,7 +133,7 @@ public class PullPushLayout extends ScrollView {
                     } 
                 }
                 break;
-        }
+        }*/
         return super.onTouchEvent(ev);
     }
 
@@ -181,7 +181,7 @@ public class PullPushLayout extends ScrollView {
         } 
             float percent = animateScroll(t);
             
-            animateUpSlide(t);
+//            animateUpSlide(t);
             deltaTranslationY = t - lastTranslationY;
             lastTranslationY = t;
             
@@ -190,9 +190,9 @@ public class PullPushLayout extends ScrollView {
 
 
     public void setT(int t) {
-        scrollTo(0, t);
+//        scrollTo(0, t);
         if (t < 0) {
-            animatePull(t);
+//            animatePull(t);
         }
     }
     
@@ -201,7 +201,7 @@ public class PullPushLayout extends ScrollView {
         if(percent > 1){
         	percent = 1;
         }
-        ViewHelper.setTranslationY(mHeader, t);
+//        ViewHelper.setTranslationY(mHeader, t);
         
         return percent;
        
