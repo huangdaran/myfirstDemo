@@ -1,12 +1,14 @@
 package huang.com.huangdaran;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ListenerManager.CloseListener{
 
     private View btnBack;
     private View btnShare;		//标题分享
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+        ListenerManager.getInstance().registListener(this);
         initView();
     }
 
@@ -61,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
         btnBack = this.findViewById(R.id.iv_back);
         btnShare = this.findViewById(R.id.iv_share);
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,FirstActivity.class));
+            }
+        });
+
         bgBackDrawable = btnBack.getBackground();
         bgBackDrawable.setAlpha(alphaMax);
         bgShareDrawable = btnShare.getBackground();
@@ -70,5 +80,10 @@ public class MainActivity extends AppCompatActivity {
         bgNavBarDrawable.setAlpha(0);
         bglineNavBarDrawable.setAlpha(0);
 
+    }
+
+    @Override
+    public void onClose(int i) {
+        Toast.makeText(MainActivity.this,"哈哈哈哈",Toast.LENGTH_SHORT).show();
     }
 }
