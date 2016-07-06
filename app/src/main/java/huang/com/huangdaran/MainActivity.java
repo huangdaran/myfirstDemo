@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements ListenerManager.CloseListener{
+import com.facebook.drawee.backends.pipeline.Fresco;
 
+public class MainActivity extends AppCompatActivity implements ListenerManager.CloseListener{
+    String TAG = "MainActivity";
     private View btnBack;
     private View btnShare;		//标题分享
     private View toolbar;
@@ -25,11 +28,19 @@ public class MainActivity extends AppCompatActivity implements ListenerManager.C
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Fresco.initialize(this);//facebook 提供的开源图片加载库
         setContentView(R.layout.activity_main);
-        ListenerManager.getInstance().registListener(this);
-        initView();
+        startActivity(new Intent(MainActivity.this,ScrollActivity.class));
+        Fresco.initialize(this);
+       /* ListenerManager.getInstance().registListener(this);
+        initView();*/
+        /*String p = "huangdaran";
+        String p1 =  DesUtil.toHexString(DesUtil.encrypt(p));
+        String p2 =  DesUtil.decrypt(p1);
+        Log.i(TAG, "p="+p+"---p1="+p1+"--p2="+p2);*/
     }
 
     private void initView() {
@@ -85,5 +96,6 @@ public class MainActivity extends AppCompatActivity implements ListenerManager.C
     @Override
     public void onClose(int i) {
         Toast.makeText(MainActivity.this,"哈哈哈哈",Toast.LENGTH_SHORT).show();
+//        C:\Program Files\Java\jdk1.8.0_91\bin\java.exe
     }
 }
